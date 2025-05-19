@@ -1,17 +1,27 @@
 import os
 import re
 from sentence_transformers import SentenceTransformer
-import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
-import pandas as pd
 import json
+import argparse
+import umap
+from typing import Union
 
 # === CONFIGURATION ===
+def get_reducer(reducer:str) -> Union[PCA, umap.UMAP]:
+    """
+    Returns either PCA or UMAP reducer based on argument.
+    """
+    if reducer == "umap": return umap.UMAP()
+    else: return PCA(n_components=2)
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--reducer", type=str, help="Reducer to use, either umap or pca.", default="pca")
+args = parser.parse_args()
 directory = './data/voynitchese'  # path to your Voynich text files
 suffixes = ['aiin', 'dy', 'in', 'chy', 'chey', 'edy', 'ey', 'y']
-
 # === STRIP SUFFIX FUNCTION ===
 def strip_suffix(word):
     for suffix in sorted(suffixes, key=len, reverse=True):
@@ -40,16 +50,16 @@ embeddings = model.encode(unique_stripped_words)
 kmeans = KMeans(n_clusters=10, random_state=42).fit(embeddings)
 labels = kmeans.labels_
 
-# === DIMENSIONALITY REDUCTION ===
-pca = PCA(n_components=2)
-reduced = pca.fit_transform(embeddings)
+# === DIMENSIONALITY REDUCTION (UMAP or PCA) ===
+reducer = get_reducer(args.reducer)
+reduced = reducer.fit_transform(embeddings)
 
 # === PLOT CLUSTERS ===
 plt.figure(figsize=(12, 8))
 plt.scatter(reduced[:, 0], reduced[:, 1], c=labels, cmap='tab10')
 plt.title("Voynich Clusters After Suffix Stripping")
-plt.xlabel("PCA Component 1")
-plt.ylabel("PCA Component 2")
+plt.xlabel("Component 1")
+plt.ylabel("Component 2")
 plt.grid(True)
 plt.show()
 
