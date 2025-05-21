@@ -126,7 +126,11 @@ The manuscript encodes a structured constructed or mnemonic language using sylla
 
 ![Cluster visualization](./results/Figure_4_pacmap.png)
 
-#### 📌 Figure 4: Transition Matrix Heatmap
+#### 📌 Figure 4: SBERT cluster embeddings (LocalMAP-reduced)
+
+![Cluster visualization](./results/Figure_5_localmap.png)
+
+#### 📌 Figure 5: Transition Matrix Heatmap
 
 ![Transition matrix heatmap](./results/transition_matrix_heatmap.png)
 
