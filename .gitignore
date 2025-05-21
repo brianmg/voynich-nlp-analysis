@@ -1,0 +1,16 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# VSCode and other IDEs
+.vscode/
+.idea/
+
+# macOS files
+.DS_Store

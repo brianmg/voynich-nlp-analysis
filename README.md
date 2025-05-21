@@ -118,9 +118,19 @@ The manuscript encodes a structured constructed or mnemonic language using sylla
 
 ![Cluster visualization](./results/Figure_1.png)
 
-#### 📌 Figure 2: Transition Matrix Heatmap
+#### 📌 Figure 2: SBERT cluster embeddings (UMAP-reduced)
+
+![Cluster visualization](./results/Figure_3_umap.png)
+
+#### 📌 Figure 3: SBERT cluster embeddings (PaCMAP-reduced)
+
+![Cluster visualization](./results/Figure_4_pacmap.png)
+
+#### 📌 Figure 4: Transition Matrix Heatmap
 
 ![Transition matrix heatmap](./results/transition_matrix_heatmap.png)
+
+
 
 * * *
 
@@ -141,6 +151,20 @@ So if you're here for a Rosetta Stone, you're out of luck.
 
 If you're here to model a language that may not want to be modeled — welcome.
 
+* * *
+
+𝌡 Recent Enhancements & Contributor Acknowledgements
+------------------------
+This project now includes:
+*   UMAP and PaCMAP visualization support, in addition to PCA - enabling nonlinear dimensionality reduction for richer clustering insights.
+*   Currently handles 3 reducers via CLI argument: no argument is PCA, --reducer umap, and --reducer pacmap.
+*   Should be noted that I haven't been able to get this project to work correctly on MacOS, only Windows.
+*   Updated the model from all-MiniLM-L6-v2 to paraphrase-multilingual-mpnet-base-v2 as it's larger (22M vs 110M).
+
+**Special thanks to:**
+*   @theElandor - for contributing the UMAP implemtation, CLI parsing improvements and cleanup via a pull request.
+*   @patcon for contributing the PaCMAP/LocalMAP dimension reduction algorithms. I haven't gotten to LocalMAP yet but PaCMAP has really made a difference.
+ 
 * * *
 
 🤝 Contributions Welcome
